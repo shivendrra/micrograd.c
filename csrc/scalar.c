@@ -88,7 +88,7 @@ Scalar* tan_h(Scalar* a) {
 }
 
 void sigmoid_backward(Scalar* self) {
-  self->_prev[0]->grad += self->grad * (self->_prev[0]->data * (1 - self->_prev[0]->data));
+  self->_prev[0]->grad += self->grad * (self->data * (1 - self->data));
 }
 
 Scalar* sigmoid(Scalar* a) {
