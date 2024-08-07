@@ -59,7 +59,19 @@ Scalar[data=(0.9975), grad=1]
 
 Header file defining the `Scalar` structure and function prototypes for scalar operations and backward propagation.
 
-### `main.c`
+### `scalar.c`
+
+C file containing all the necessary functions for `Scalar` value structure for ops & backprop.
+
+### `nn.h`
+
+Header file defining the `Neuron`, `Layer`, & `MLP` structures & function prototypes for creating a small MLP.
+
+### `nn.c`
+
+C file containing all the basic functions for building & implementing MLP in C using `Scalar` values.
+
+### `test.c`
 
 Demonstrates the usage of the Micrograd-C library by creating scalar values, performing operations, and computing gradients.
 

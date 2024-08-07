@@ -12,6 +12,9 @@ typedef struct Scalar {
   double aux;
 } Scalar;
 
+typedef Scalar* scalar;
+typedef Scalar** tensor;
+
 typedef struct {
   Scalar** data;
   size_t size;
