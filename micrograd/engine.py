@@ -9,7 +9,7 @@ class Value:
     self._op = _op
 
   def __repr__(self):
-    return f"Value(data={self.data}, grad={self.grad})" if self.grad != '0' else f"Value(data={self.data})"
+    return f"Value(data={self.data:.4f}, grad={self.grad:.4f})"
 
   def __add__(self, other):
     other = other if isinstance(other, Value) else Value(other)
@@ -44,7 +44,7 @@ class Value:
     t = (math.exp(2*self.data) -1)/(math.exp(2*self.data) + 1)
     out = Value(t, (self,), 'tanh')
     def _backward():
-      self.grad += (1 - t**2) * out.grad
+      self.grad += (1 - out.data**2) * out.grad
     out._backward = _backward
     return out
   
@@ -52,7 +52,7 @@ class Value:
     t = 1 / (1 + math.exp(-self.data))
     out = Value(t, (self, ), 'sigmoid')
     def _backward():
-      self.grad += t * (1 - t) * out.grad
+      self.grad += (out.data * (1 - out.data)) * out.grad
     out._backward = _backward
     return out
 

@@ -91,6 +91,36 @@ Scalar* relu(Scalar* a) {
   return out;
 }
 
+void tanh_backward(Scalar* self) {
+  Scalar* a = self->_prev[0];
+
+  a->grad += self->grad * (1 - pow(a->data, 2));
+}
+
+Scalar* tan_h(Scalar* a) {
+  Scalar** child = (Scalar**)malloc(1 * sizeof(Scalar*));
+  child[0] = a;
+
+  Scalar* out = initialize_scalars(tanh(a->data), child, 1);
+  out->_backward = tanh_backward;
+  return out;
+}
+
+void sigmoid_backward(Scalar* self) {
+  Scalar* a = self->_prev[0];
+
+  a->grad += self->grad * (a->data * (1 - a->data));
+}
+
+Scalar* sigmoid(Scalar* a) {
+  Scalar** child = (Scalar**)malloc(1 * sizeof(Scalar*));
+  child[0] = a;
+
+  Scalar* out = initialize_scalars(1 / (1 + exp(-a->data)), child, 1);
+  out->_backward = sigmoid_backward;
+  return out;
+}
+
 Scalar* negate(Scalar* a) {
   return mul_val(a, initialize_scalars(-1, NULL, 0));
 }
@@ -133,23 +163,40 @@ void print(Scalar* a) {
 
 int main() {
   Scalar* a = initialize_scalars(2.0, NULL, 0);
-  Scalar* b = initialize_scalars(5.0, NULL, 0);
+  Scalar* b = initialize_scalars(3.0, NULL, 0);
 
   Scalar* c = add_val(a, b);
   Scalar* d = mul_val(a, b);
-  Scalar* e = pow_val(d, 3);
+  Scalar* e = relu(d);
+  Scalar* f = tan_h(d);
+  Scalar* g = sigmoid(d);
+  Scalar* h = sub_val(a, b);
 
-  backward(e);
+  backward(g);
+  print(a); // output: Scalar[data=(2), grad=-90]
+  print(b); // output: Scalar[data=(3), grad=-60]
+  print(c); // output: Scalar[data=(5), grad=0]
+  print(d); // output: Scalar[data=(6), grad=-30]
+  print(e); // output: Scalar[data=(6), grad=0]
+  print(f); // output: Scalar[data=(1), grad=0]
+  print(g); // output: Scalar[data=(0.9975), grad=1]
 
-  print(a);
-  print(b);
-  print(c);
-  print(d);
-  print(e);
-
+  free(a->_prev);
+  free(b->_prev);
+  free(c->_prev);
+  free(d->_prev);
+  free(e->_prev);
+  free(f->_prev);
+  free(g->_prev);
+  free(h->_prev);
   free(a);
   free(b);
   free(c);
   free(d);
   free(e);
+  free(f);
+  free(g);
+  free(h);
+
+  return 0;
 }
