@@ -12,7 +12,7 @@ void Value::noop_backward(Value* v) {}
 
 std::shared_ptr<Value> Value::add(const std::shared_ptr<Value>& a, const std::shared_ptr<Value>& b) {
   auto out = std::make_shared<Value>(a->data + b->data);
-  out->_prev = {a, b};  // Store shared_ptr directly to handle ownership
+  out->_prev = {a, b};
   out->_backward = add_backward;
   return out;
 }
@@ -24,7 +24,7 @@ void Value::add_backward(Value* v) {
 
 std::shared_ptr<Value> Value::mul(const std::shared_ptr<Value>& a, const std::shared_ptr<Value>& b) {
   auto out = std::make_shared<Value>(a->data * b->data);
-  out->_prev = {a, b};  // Store shared_ptr directly to handle ownership
+  out->_prev = {a, b};
   out->_backward = mul_backward;
   return out;
 }
@@ -36,7 +36,7 @@ void Value::mul_backward(Value* v) {
 
 std::shared_ptr<Value> Value::pow_val(const std::shared_ptr<Value>& a, double exp) {
   auto out = std::make_shared<Value>(std::pow(a->data, exp));
-  out->_prev = {a};  // Store shared_ptr directly to handle ownership
+  out->_prev = {a};
   out->exp = exp;
   out->_backward = pow_backward;
   return out;
@@ -60,7 +60,7 @@ std::shared_ptr<Value> Value::truediv(const std::shared_ptr<Value>& a, const std
 
 std::shared_ptr<Value> Value::relu(const std::shared_ptr<Value>& a) {
   auto out = std::make_shared<Value>(a->data > 0 ? a->data : 0);
-  out->_prev = {a};  // Store shared_ptr directly to handle ownership
+  out->_prev = {a};
   out->_backward = relu_backward;
   return out;
 }

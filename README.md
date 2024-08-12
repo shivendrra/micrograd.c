@@ -15,6 +15,7 @@ To get started with Micrograd-C, clone this repository and compile the provided 
 ### Prerequisites
 
 - A C compiler (e.g., `gcc`)
+- A C++ compiler (e.g. `g++`)
 
 ### Building the Project
 
@@ -26,17 +27,27 @@ To get started with Micrograd-C, clone this repository and compile the provided 
    ```
 
 2. Compile the code:
-
+- For c version
    ```bash
    gcc csrc/scalar.c test.c -o test -lm
+   ```
+- For cpp version
+   ```bash
+   g++ cppsrc/value.cpp cppsrc/module.cpp  main.cpp -o main -lm
    ```
 
 ### Running the Example
 
 After compiling, run the example:
 
+- For c version
 ```bash
 ./test
+```
+
+- For cpp version
+```bash
+./main
 ```
 
 ### Example Output
@@ -55,23 +66,23 @@ Scalar[data=(0.9975), grad=1]
 
 ## Code Overview
 
-### `scalar.h`
+### `scalar.h` / `value.h`
 
 Header file defining the `Scalar` structure and function prototypes for scalar operations and backward propagation.
 
-### `scalar.c`
+### `scalar.c` / `value.cpp`
 
 C file containing all the necessary functions for `Scalar` value structure for ops & backprop.
 
-### `nn.h`
+### `nn.h` / `module.h`
 
 Header file defining the `Neuron`, `Layer`, & `MLP` structures & function prototypes for creating a small MLP.
 
-### `nn.c`
+### `nn.c` / `module.cpp`
 
 C file containing all the basic functions for building & implementing MLP in C using `Scalar` values.
 
-### `test.c`
+### `test.c` / `cppsrc/main.cpp`
 
 Demonstrates the usage of the Micrograd-C library by creating scalar values, performing operations, and computing gradients.
 
