@@ -26,7 +26,7 @@ scalar neuron_forward(Neuron* neuron, tensor inputs) {
     sum = temp;
   }
   if (neuron->nonlin) {
-    Scalar* temp = relu(sum);
+    Scalar* temp = sigmoid(sum);
     free(sum);
     return temp;
   }

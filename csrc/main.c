@@ -31,10 +31,16 @@ int main() {
 
       scalar error = sub_val(output[0], target);
       scalar error_squared = mul_val(error, error);
-      scalar temp = add_val(loss, error_squared);
+
+      Scalar* temp = add_val(loss, error_squared);
+      free(loss);
       loss = temp;
 
       free(input);
+      free(output);
+      free(target);
+      free(error);
+      free(error_squared);
     }
 
     zero_grad(model);
@@ -43,10 +49,12 @@ int main() {
     size_t param_count;
     tensor params = mlp_parameters(model, &param_count);
     for (size_t i = 0; i < param_count; ++i) {
+      // print(params[i]);
       params[i]->data -= learning_rate * params[i]->grad;
     }
 
     printf("Epoch %d -> Loss: %f\n", k, loss->data);
+    free(loss);
   }
 
   printf("Final outputs:\n");
@@ -59,6 +67,7 @@ int main() {
     printf("[%d] %f\n", i, output[0]->data);
 
     free(input);
+    free(output);
   }
 
   mlp_free(model);
