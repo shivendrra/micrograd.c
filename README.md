@@ -2,6 +2,10 @@
 
 **Micrograd-C** is a simple automatic differentiation library implemented in C, basically a 'C' version of Karpathy's [Micrograd](https://github.com/karpathy/micrograd). It provides a basic framework for creating and manipulating scalar values with gradient support, allowing for backpropagation through a computation graph.
 
+## Youtube Tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EgAYe2mc45I?autoplay=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Features
 
 - **Automatic Differentiation**: Compute gradients for scalar operations using backpropagation.
