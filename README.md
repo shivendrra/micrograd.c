@@ -5,7 +5,7 @@
 ## Youtube Tutorial
 
 <a href="https://www.youtube.com/watch?v=EgAYe2mc45I" target="_blank">
-  <img src="https://img.youtube.com/vi/EgAYe2mc45I/2.jpg" alt="Micrograd-C Tutorial" width="1280" height="720">
+  <img src="https://img.youtube.com/vi/EgAYe2mc45I/0.jpg" alt="Micrograd-C Tutorial" width="540" height="360">
 </a>
 
 Click the image above or [this link](https://www.youtube.com/watch?v=EgAYe2mc45I) to watch the tutorial.
