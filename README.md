@@ -4,9 +4,11 @@
 
 ## Youtube Tutorial
 
-```html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EgAYe2mc45I?autoplay=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-```
+<a href="https://www.youtube.com/watch?v=EgAYe2mc45I" target="_blank">
+  <img src="https://img.youtube.com/vi/EgAYe2mc45I/2.jpg" alt="Micrograd-C Tutorial" width="1280" height="720">
+</a>
+
+Click the image above or [this link](https://www.youtube.com/watch?v=EgAYe2mc45I) to watch the tutorial.
 
 ## Features
 
